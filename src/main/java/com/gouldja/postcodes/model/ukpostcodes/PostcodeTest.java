@@ -30,10 +30,16 @@ public class PostcodeTest {
 		
 		logger.debug(ApplicationConfiguration.getApplicationProperty("app.name"));
 		
+		PostcodeTest test = new PostcodeTest();
+		test.getPostcode("AL1 1AJ");
+
 		
+	}
+	
+	public void getPostcode(String code) {
 		
 		try {
-			URL url = new URL("http://uk-postcodes.com/postcode/AL11AA.xml");
+			URL url = new URL("http://uk-postcodes.com/postcode/"+code+".xml");
 			
 			DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
 			DocumentBuilder db = dbf.newDocumentBuilder();
@@ -64,7 +70,6 @@ public class PostcodeTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 		
 	}
 

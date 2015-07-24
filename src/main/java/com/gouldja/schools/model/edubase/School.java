@@ -51,5 +51,8 @@ public class School {
 	public String getEstablishment_name() {
 		return establishment_name;
 	}
+	public String getPostcode() {
+		return postcode;
+	}
 
 }

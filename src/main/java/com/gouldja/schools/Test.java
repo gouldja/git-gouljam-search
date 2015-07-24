@@ -3,19 +3,17 @@ package com.gouldja.schools;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.csvreader.CsvReader;
+import com.gouldja.common.framework.ApplicationConfiguration;
+import com.gouldja.postcodes.model.Postcode;
+import com.gouldja.postcodes.model.ukpostcodes.PostcodeTest;
 import com.gouldja.schools.model.edubase.School;
 
 public class Test {
@@ -28,7 +26,7 @@ public class Test {
 		
 		
 		try {
-			URL url = new URL("file:///C:/Users/OFFICE/Downloads/edubasealldata20150724.csv");
+			URL url = new URL(ApplicationConfiguration.getApplicationProperty("edubase.data.allschools.csv"));
 			
 
 			BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
@@ -40,6 +38,9 @@ public class Test {
 			while (schools.readRecord())
 			{
 				School s = new School(schools);
+				
+				Postcode p = new Postcode(s.getPostcode());
+				
 				//s.debug();
 			}
 			
